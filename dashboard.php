@@ -1,0 +1,64 @@
+<?php
+//include auth_session.php file on all user panel pages
+include("auth_session.php");
+?>
+
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="style.css"/>
+  <!-- Load the latest version of TensorFlow.js -->
+  <script src="https://unpkg.com/@tensorflow/tfjs@3.8.0/dist/tf.min.js"></script>
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+    <div>
+        <p>WELCOME, <?php echo $_SESSION['username']; ?>!</p>
+    </div>
+
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">PREDICTOR</a>
+    </div>
+  </nav>
+
+
+  <div class="row">
+    <div class="col-lg-6 col-12 p-5">
+
+      <!-- add video element -->
+
+      <div class="custom-file">
+        <input type="file" onchange="upload(event)" accept="image/png, image/jpeg, image/jpg"  type="file" name="image" class="form-control" id="fileUploader">
+      </div>
+
+      <button class="btn btn-lg btn-dark mt-4" onclick="predict()">predict   <span id="spinner" class="d-none spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></button>
+
+
+      <div class="mt-4">
+        <p class="alert alert-primary p-2 d-none" id="predictionResult"></p>
+      </div>
+
+
+
+    </div>
+    <div class="col-lg-6 col-12 p-5">
+      <img id="input_image" height="200px" width="200px" src="brain.jpg" alt="" srcset="">
+    </div>
+
+    <div class="col-lg-6 col-12 px-5 p-3">
+      <p class="text-lg text-gray" style="line-height: 1.6em;">
+        Upload an MRI image and click the predict. You need to wait for the artificial neural network to predict the result. The output depends on the accuracy of the model. You will get a message whether there is a shrinkage or not.
+      </p>
+    </div>
+  </div>
+  <div>
+      <p> Click<a href="logout.php">Here</a>to Logout</p>
+  </div>
+
+  <!-- Load index.js after the content of the page -->
+  <script src="main.js"></script>
+</body>
+</html>
